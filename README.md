@@ -1,5 +1,4 @@
 # New
-# dockerui.base-xpra
 
 Provides base docker images for X applications by using [Xpra](https://xpra.org/) as the X11 server.
 
