@@ -17,7 +17,7 @@ docker build -t xpra-test .
 Type the following command:
 
 ```
-> docker run -d -p 14500:14500 xpra-test"
+docker run -d -p 14500:14500 xpra-test
 ```
 
 and then browse <http://yourhost:14500/>.  Oh yeah!  An `xterm` is shown on the web browser.
