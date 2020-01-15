@@ -2,6 +2,8 @@ FROM ubuntu:16.04
 
 COPY keys/ /tmp/keys/
 
+RUN apt-get update && apt-get install dirmngr -y && apt-key adv --fetch-keys http://xpra.org/gpg.asc
+
 RUN apt-key add /tmp/keys/xpra.org-20180504.asc && \
     echo "deb http://xpra.org/ xenial main" > /etc/apt/sources.list.d/xpra.list && \
     apt-get update && \
@@ -19,8 +21,10 @@ ENV GUEST_USER=user \
     GUEST_GROUP=user \
     GUEST_GID=9001 \
     DISPLAY=:0 \
-    XPRA_OPTIONS=
+    XPRA_OPTIONS="--bind-tcp=0.0.0.0:14500 --html=on"
 
 ADD common/ debian-series/ /docker/
 RUN chmod a+x /docker/*
+EXPOSE 14500
 ENTRYPOINT ["/docker/entrypoint.sh"]
+CMD xterm
